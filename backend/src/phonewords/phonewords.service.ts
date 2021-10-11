@@ -12,21 +12,22 @@ const numberToLetters: any = {
 }
 
 const numberToLetterMapping = (number: string) => {
+  // should I throw if is not char between 2-9
   if (number in numberToLetters) {
     return numberToLetters[number]
   }
-  console.log(`Could not map number ${number} to a letter`)
-
+  console.log(`Could not map number ${number} to a letter.`)
   return [] // need to implement 0(should be space?) and 1
 }
 
 const phoneword = (number: string): Phoneword => {
-  if (!number || typeof number === undefined) throw new Error('Missing number input')
+  if (!number || typeof number === undefined) throw new Error('Missing number input.')
 
   const arrayOfNumbers = number.split('')
   const arrayOfLetters = arrayOfNumbers
     .map((number) => {
       const letters = numberToLetterMapping(number)
+     
         return letters
     })
     .reduce((previous, current) => {
