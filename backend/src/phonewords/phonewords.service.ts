@@ -41,7 +41,7 @@ const phoneword = (number: string): Phoneword => {
       return mergedPreviousAndCurrent
     })
 
-  return { words: arrayOfLetters}
+  return { words: arrayOfLetters }
 }
 
 export { phoneword }
