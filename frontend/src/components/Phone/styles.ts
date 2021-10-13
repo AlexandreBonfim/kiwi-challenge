@@ -34,6 +34,18 @@ export const Keyboard = styled.div`
     }
 `
   
+export const Cursor = styled.span`
+    animation: blink 1.5s linear infinite alternate;
+    border-color: #333;
+    border-left: 1px solid;
+    margin-left: -1px;
 
-
-
+    @keyframes blink {
+        50% {
+            opacity: 0;
+        }
+        100% {
+            opacity: 1;
+        }
+    }
+`
