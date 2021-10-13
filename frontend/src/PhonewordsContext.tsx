@@ -25,6 +25,8 @@ export function PhonewordProvider({ children }: PhonewordsContextProps) {
             .then((response: any) => {
                 setWords(response.data.words)
             })
+        } else {
+            setWords([]) // needed re-render word box component
         }
     }
 

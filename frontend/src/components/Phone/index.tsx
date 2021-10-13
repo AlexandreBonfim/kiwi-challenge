@@ -1,7 +1,7 @@
 import { useContext, useEffect, useState } from 'react'
 import { PhonewordsContext } from '../../PhonewordsContext';
 
-import { Container, Keyboard, Screen } from './styles'
+import { Container, Keyboard, Screen, Cursor } from './styles'
 
 export function Phone() {
     const { getWords } = useContext(PhonewordsContext);
@@ -14,9 +14,9 @@ export function Phone() {
     },[number]); // @todo: warning
 
     function onBtnClicked(char: string) {
-        // in case is not in the end
+        // in case is not in the end of string add substring in the index
         if (position !== number.length){
-            setNumber(number.slice(0, position) + char + number.slice(position)) 
+            setNumber(`${number.slice(0, position)}${char}${number.slice(position)}`) 
         } else {
             setNumber(`${number}${char}`)
         }
@@ -28,7 +28,7 @@ export function Phone() {
         const rightPosition = position - 1
         if (position > 0) {
             // concatenate slices of the string before and after the current index
-            setNumber(number.slice(0, rightPosition) + number.slice(rightPosition + 1)) 
+            setNumber(`${number.slice(0, rightPosition)}${number.slice(rightPosition + 1)}`) 
             setPosition(position -1)
         }
     }
@@ -46,8 +46,9 @@ export function Phone() {
     return (
         <Container>
             <Screen> 
-                {number}
-            </Screen>   
+                {/* MOVE CURSOR */}
+                <span>{number.slice(0, position)} <Cursor /> {number.slice(position)}</span>
+            </Screen>  
 
             <Keyboard>
                 <button onClick={() => onUpClicked()}>⬆</button>
