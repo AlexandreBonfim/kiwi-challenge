@@ -14,28 +14,33 @@ export function Phone() {
     },[number]); // @todo: warning
 
     function onBtnClicked(char: string) {
-        setNumber(`${number}${char}`)
+        // in case is not in the end
+        if (position !== number.length){
+            setNumber(number.slice(0, position) + char + number.slice(position)) 
+        } else {
+            setNumber(`${number}${char}`)
+        }
+
         setPosition(position +1)
     }
 
-    function onRemoveChar() {// @todo: how remove words box when empty
+    function onRemoveChar() {// @todo: how remove words box when empty. re-render?
         const rightPosition = position - 1
         if (position > 0) {
-            setNumber(number.slice(0, rightPosition) + number.slice(rightPosition + 1))
+            // concatenate slices of the string before and after the current index
+            setNumber(number.slice(0, rightPosition) + number.slice(rightPosition + 1)) 
             setPosition(position -1)
         }
     }
 
-    function onUpClicked() { // @todo: need check max position
-        console.log(`up ${position}`)
-        if (position > 0)setPosition(position - 1)
+    function onUpClicked() {
+        // position never be negative
+        if (position > 0)setPosition(position - 1) 
     }
 
     function onDownClicked() {
-        console.log(`down ${position}`)
-        console.log(`word ${number.length}`)
-        
-        if (position <= number.length) setPosition(position + 1)
+        // check for max position
+        if (position < number.length) setPosition(position + 1) 
     }
 
     return (
@@ -43,7 +48,7 @@ export function Phone() {
             <Screen> 
                 {number}
             </Screen>   
-{position}
+
             <Keyboard>
                 <button onClick={() => onUpClicked()}>⬆</button>
                 <button onClick={() => onDownClicked()}>⬇</button>
