@@ -20,12 +20,12 @@ export function PhonewordProvider({ children }: PhonewordsContextProps) {
     const [words, setWords] = useState<Phoneword[]>([]);
 
     function getWords(number: string) {
-        api.get('words', { params: { number: number } })
-        .then((response: any) => {
-            console.log('api ===', response.data.words)
-            setWords(response.data.words)
-            console.log('words ==', words)
-        })
+        if (number.length > 0) { // don't call on load or when clean all fields
+            api.get('words', { params: { number: number } })
+            .then((response: any) => {
+                setWords(response.data.words)
+            })
+        }
     }
 
     return (
