@@ -25,8 +25,8 @@ export const Keyboard = styled.div`
         border-radius: 0.25rem;
         border: 0;
         box-shadow: #777 2px 1px 10px 0px, rgba(255, 255, 255, 0.8) -6px -2px 16px 0px;
+
         transition: 0.4s;
-        
         &:active {
             box-shadow: 2px 2px 2px #777;
             transform: translateY(3px);

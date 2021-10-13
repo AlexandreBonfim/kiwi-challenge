@@ -24,7 +24,7 @@ export function Phone() {
         setPosition(position +1)
     }
 
-    function onRemoveChar() {
+    function onRemoveChar() {// @todo: how remove words box when empty. re-render?
         const rightPosition = position - 1
         if (position > 0) {
             // concatenate slices of the string before and after the current index
